@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestingFizzBuzz;
+using TestingFizzBuzz.Controllers;
+
+namespace TestingFizzBuzz.Tests.Controllers
+{
+    [TestClass]
+    public class HomeControllerTest
+    {
+        [TestMethod]
+        public void Dikirim1Diterima1()
+        {
+            // Arrange
+            FizzBuzzController controller = new FizzBuzzController();
+
+            // Act
+            ViewResult result = controller.Index(1) as ViewResult;
+            string expected = "1";
+            string actual = result.ViewBag.Output;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Dikirim3Diterima2Fizz()
+        {
+            // Arrange
+            FizzBuzzController controller = new FizzBuzzController();
+
+            // Act
+            ViewResult result = controller.Index(3) as ViewResult;
+            string expected = "12Fizz";
+            string actual = result.ViewBag.Output;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void Dikirim5Diterima2Fizz4Buzz()
+        {
+            // Arrange
+            FizzBuzzController controller = new FizzBuzzController();
+
+            // Act
+            ViewResult result = controller.Index(5) as ViewResult;
+            string expected = "12Fizz4Buzz";
+            string actual = result.ViewBag.Output;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        public void Dikirim15Diterima12Fizz4Buzz()
+        {
+            // Arrange
+            FizzBuzzController controller = new FizzBuzzController();
+
+            // Act
+            ViewResult result = controller.Index(5) as ViewResult;
+            string expected = "12Fizz4Buzz78Fizz";
+            string actual = result.ViewBag.Output;
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Index()
+        {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.Index() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void About()
+        {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.About() as ViewResult;
+
+            // Assert
+            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+        }
+
+        [TestMethod]
+        public void Contact()
+        {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.Contact() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+    }
+}
